@@ -13,7 +13,7 @@ kernel_version = tuple(int(n) for n in re.match(r'Linux-(\d+)\.(\d+)\.(\d+)', pl
 def get_proc_info(pid):
     proc_info = {}
     try:
-        proc_info['cmdline'] = open(os.path.join('/proc', pid, 'cmdline'), 'r').read()[:-1]
+        proc_info['cmdline'] = open(os.path.join('/proc', pid, 'cmdline'), 'r').read()[:-1].replace('\u0000',' ')
         stat = open(os.path.join('/proc', pid, 'stat'), 'r').read()
         match = re.search('\(([^)]+)\)', stat)
         proc_info['comm'] = match.group(1)
