@@ -22,18 +22,15 @@ if __name__ == '__main__':
     )
 
     args = parser.parse_args()
-    pattern = re.compile(r'(.+) *(asc|desc)?')
 
     fields = []
     for field in args.fields:
-        match = re.match(pattern, field)
-        if match:
-            f, rev = match.groups()
-            if rev == 'desc':
-                rev = True
-            else:
-                rev = False
-            fields.append((f, rev))
+        if field.endswith(' desc'):
+            fields.append((field[:-5], True))
+        elif field.endswith(' asc'):
+            fields.append((field[:-4], True))
+        else:
+            fields.append((field, False))
 
     data = []
     for line in sys.stdin.readlines():
