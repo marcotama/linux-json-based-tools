@@ -8,6 +8,7 @@ The suite contains the following tools:
 * `filter`: replaces `grep`
 * `tab`: prints the JSON input into a readable table format
 * `lf`: lists the fields in the JSON input
+* `sort`: sorts JSON lines on given fields: similar to `sort`
 
 Assuming the aliases in `init.sh` are setup, the following usages are possible:
 
@@ -61,3 +62,24 @@ $ ldc | tab `ldc | lf`
 644  33188  2053  0  1  0  1000  4  1720045  0  0  0  0  0  1  0  0  1489801163  1489801162  1489801162  0  filter.py                  1  0  1  0  4  .  0  0  5789  0  0  1  1  1000  6
 ...
 ```
+
+```
+$ ldc | sort access_rights name | tab name access_rights
+
+.git                       16877
+.idea                      16877
+.gitignore                 33188
+README.md                  33188
+...
+```
+
+```
+$ ldc | sort access_rights "name desc" | tab name access_rights
+
+.idea                      16877
+.git                       16877
+test.py                    33188
+tab.py                     33188
+...
+```
+
