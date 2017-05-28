@@ -4,7 +4,7 @@ import re
 import sys
 
 
-NUMERIC_PATTERN = re.compile(r'(\d+(?:(?:K|M|G|T|P|E)i?)?|\d+\.\d+(?:(?:K|M|G|T|P|E)i?)?)')
+NUMERIC_PATTERN = re.compile(r'(\d+(?:(?:[KMGTPE])i?)?|\d+\.\d+(?:(?:[KMGTPE])i?)?)')
 
 def float_or_int(v):
     try:
@@ -91,7 +91,8 @@ if __name__ == '__main__':
     )
 
     args = parser.parse_args()
-    pattern = re.compile(r'([a-zA-Z0-9-_]+) *(==|>=|>|<=|<|!=|=~) *(\d+(?:(?:K|M|G|T|P|E)i?)?|\d+\.\d+(?:(?:K|M|G|T|P|E)i?)?|\d+\.\d+e\d+|"[^"]+"|True|False)')
+    pattern = re.compile(
+        r'([a-zA-Z0-9-_]+) *(==|>=|>|<=|<|!=|=~) *(\d+(?:(?:[KMGTPE])i?)?|\d+\.\d+(?:(?:[KMGTPE])i?)?|\d+\.\d+e\d+|"[^"]+"|True|False)')
 
     for line in sys.stdin.readlines():
         try:
