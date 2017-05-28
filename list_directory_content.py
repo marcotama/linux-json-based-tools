@@ -5,7 +5,7 @@ import json
 
 def get_file_info(file_path):
     file_stat = os.stat(file_path)
-    mode = file_stat[stat.ST_MODE]
+    mode = file_stat[stat.ST_MODE] # type: int
     file_info = {
         'name': os.path.basename(file_path),
         'parent': os.path.dirname(file_path),
